@@ -1,7 +1,7 @@
 {
   "name": "tiger-team-frontend",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
     "@testing-library/jest-dom": "^5.16.5",
@@ -17,6 +17,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "webpack-dev-server --mode development --open",
     "build": "webpack --mode production",
     "test": "react-scripts test",
@@ -42,6 +44,7 @@
   },
   "devDependencies": {
     "@babel/preset-react": "^7.18.6",
+    "gh-pages": "^5.0.0",
     "html-webpack-plugin": "^5.5.0",
     "source-map-loader": "^4.0.1",
     "svg-url-loader": "^8.0.0",
