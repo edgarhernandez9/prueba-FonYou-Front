@@ -2,8 +2,9 @@ import React from 'react';
 import Spinner from '../components/Spinner';
 import { useBusqueda } from '../hook/useBusqueda';
 import { useCard } from '../hook/useCard';
-
+import { Paginate } from '../components/Paginate';
 import '../theme/Card.css';
+
 
 export const Card = () => {
 
@@ -54,6 +55,7 @@ export const Card = () => {
                                 ))
                             }
                         </div>
+                        <Paginate />
                     </>
                 }  
                 </>

@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios'
 
-export const getDataApiRickAndMorty = createAsyncThunk('obtenerDatos', async (nombrePersonaje) => {
-    
+export const getDataApiRickAndMorty = createAsyncThunk('obtenerDatos', async ({nombrePersonaje, pageNumber}) => {
+    console.log(pageNumber, nombrePersonaje);
     try {
-        const response = await axios.get(`https://rickandmortyapi.com/api/character/?name=${nombrePersonaje}`);
+        const response = await axios.get(`https://rickandmortyapi.com/api/character/?page=${pageNumber}&name=morty`);
         const data = {
             ...response.data,
             status: response.status

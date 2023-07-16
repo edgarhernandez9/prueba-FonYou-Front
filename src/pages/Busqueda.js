@@ -24,7 +24,7 @@ const Busqueda = () => {
                                 type='text'
                             />
                             <button
-                                onClick={() => handleClick('busqueda')}
+                                onClick={(e) => handleClick(e,'busqueda')}
                                 className={
                                     `nav-button iconoBoton uil uil-${isOpen
                                         ? "multiply"
@@ -47,7 +47,7 @@ const Busqueda = () => {
                     style={{
                         background: 'transparent'
                     }}
-                    onClick={ !isDetalle ? () => handleClick('buscar') : () => handleClick('detalle')}
+                    onClick={ !isDetalle ? (e) => handleClick(e, 'buscar') : (e) => handleClick(e, 'detalle')}
                 >{!isDetalle ? "Buscar" : "Regresar"}</button>
             </div>
         </nav>

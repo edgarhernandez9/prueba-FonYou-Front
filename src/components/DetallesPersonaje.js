@@ -4,7 +4,7 @@ import { useCard } from '../hook/useCard';
 import '../theme/DetallesPersonaje.css';
 
 
-const DetallesPersonaje = () => {
+export const DetallesPersonaje = () => {
     const { dataDetalles } = useCard();
     
     return (
@@ -37,4 +37,3 @@ const DetallesPersonaje = () => {
     )
 }
 
-export default DetallesPersonaje;

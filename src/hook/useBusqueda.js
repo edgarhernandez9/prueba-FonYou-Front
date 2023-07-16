@@ -10,21 +10,24 @@ export const useBusqueda = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [nombrePersonaje, setNombrePersonaje] = useState('');
+    const [ pageNumber, setPageNumber ] = useState(1);
     const [isOpen, setIsOpen] = useState('');
     const [isSpinner, setIsSpinner] = useState(false);
+
     const handleChange = (event) => {
         
         setNombrePersonaje(event.target.value)
     }
 
-    const handleClick = (valor) => {
+    const handleClick = (event, valor) => {
         
         switch (valor) {
             case 'busqueda':
                 setIsOpen(!Boolean(isOpen) ? 'open' : '');
                 break;
-            case 'buscar': 
-                dispatch(getDataApiRickAndMorty(nombrePersonaje));
+            case 'buscar':
+                setPageNumber(1);
+                dispatch(getDataApiRickAndMorty({nombrePersonaje, pageNumber}));
                 setIsSpinner(true);
                 break;
             case 'detalle':
@@ -36,6 +39,14 @@ export const useBusqueda = () => {
         }
     }
 
+    const handleClickPaginate = (data) => {
+        console.log("switch pagintae", data);
+        const page = (Number(data.selected) + 1 );
+        console.log('page', page);
+        dispatch(getDataApiRickAndMorty({nombrePersonaje, page}));
+        setIsSpinner(true);
+    }
+
     return {
         datosApi: datosStore?.datos,
         isLoading: datosStore.isLoading,
@@ -43,8 +54,10 @@ export const useBusqueda = () => {
         isOpen,
         isSpinner,
         isDetalle: datosStore.datos.isDetalles,
+        pageNumber,
         handleChange,
         handleClick,
-        
+        setPageNumber,
+        handleClickPaginate
     }
 }
