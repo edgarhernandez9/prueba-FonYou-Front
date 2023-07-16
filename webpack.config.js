@@ -5,7 +5,7 @@ module.exports = {
     devtool: 'inline-source-map',
     entry: './src/index.js',
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.join(__dirname, 'dist'),
         filename: 'bundle.js'
     },
     plugins: [
@@ -40,11 +40,6 @@ module.exports = {
                         loader: 'file-loader',
                     },
                 ],
-            },
-            {
-                test: /\.json$/,
-                exclude: /(node_modules)/,
-                loader: 'json-loader'
             }
               
               
@@ -52,6 +47,7 @@ module.exports = {
     },
     devServer: {
         port: 3000,
-        contentBase: path.join(__dirname, 'public')
+        contentBase: path.join(__dirname, 'public'),
+        hot: true
     },      
 }
