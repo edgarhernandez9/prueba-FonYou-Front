@@ -10,10 +10,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({ 
-            template: path.resolve(__dirname, "public", "index.html"),
-            favicon: "./public/favicon.ico",
-            filename: "index.html",
-            manifest: "./public/manifest.json",
+            template: "./public/index.html"
         })
     ],
     module: {
@@ -47,6 +44,5 @@ module.exports = {
     },
     devServer: {
         port: 3000,
-        hot: true,
-    },      
+    },
 }
