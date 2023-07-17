@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { getDataApiRickAndMorty, regresar } from '../store/reducer';
+import { getDataApiRickAndMorty, paginate, regresar } from '../store/reducer';
 
 
 export const useBusqueda = () => {
@@ -26,7 +26,8 @@ export const useBusqueda = () => {
                 setIsOpen(!Boolean(isOpen) ? 'open' : '');
                 break;
             case 'buscar':
-                setPageNumber(1);
+                setIsSpinner(false);
+                // setPageNumber(1);
                 dispatch(getDataApiRickAndMorty({nombrePersonaje, pageNumber}));
                 setIsSpinner(true);
                 break;
@@ -40,16 +41,15 @@ export const useBusqueda = () => {
     }
 
     const handleClickPaginate = (data) => {
-        console.log("switch pagintae", data);
         const page = (Number(data.selected) + 1 );
-        console.log('page', page);
-        dispatch(getDataApiRickAndMorty({nombrePersonaje, page}));
+        
+        const url = datosStore.datos.datos.info.next;
+        const namePerson = new URLSearchParams(url.split('?')[1]).get('name');
+        dispatch(getDataApiRickAndMorty({nombrePersonaje: namePerson, pageNumber: page}));
         setIsSpinner(true);
     }
 
     return {
-        datosApi: datosStore?.datos,
-        isLoading: datosStore.isLoading,
         nombrePersonaje,
         isOpen,
         isSpinner,

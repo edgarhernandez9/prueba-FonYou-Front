@@ -14,7 +14,7 @@ const Busqueda = () => {
             <h2 style={{ fontSize: '30px'}}>Dashboard</h2>
             <div className="nav-items">
                 {
-                    !isDetalle && 
+                    !isDetalle &&
                     <div className='wrapper'>
                         <div className={ `search ${isOpen}` }>
                             <input
@@ -41,8 +41,8 @@ const Busqueda = () => {
                         </div>
                     </div>
                 }
-                
-                <button 
+
+                <button
                     className='nav-button'
                     style={{
                         background: 'transparent'

@@ -1,26 +1,27 @@
 import React from 'react';
 import Spinner from '../components/Spinner';
-import { useBusqueda } from '../hook/useBusqueda';
 import { useCard } from '../hook/useCard';
-import { Paginate } from '../components/Paginate';
+// import { Paginate } from '../components/Paginate';
 import '../theme/Card.css';
+import { useSelector } from 'react-redux';
 
 
 export const Card = () => {
 
-    const { datosApi, isSpinner } = useBusqueda();
+    const datosStore = useSelector(state => state);
+    console.log(datosStore);
     const { handleClickDetalle } = useCard();
 
     return (
         <>
             {
-                datosApi.isLoading ?
+                datosStore.isLoading ?
                 <div>
-                    <Spinner isOpenSpinner={isSpinner} />
+                    <Spinner isOpenSpinner={true} />
                 </div> :
                 <>
                 {
-                    datosApi.datos.status !== 200 ?
+                    datosStore?.datos?.datos?.status !== 200 ?
                     <div className='table'>
                         <div className='container'>
                             <div className='box' >
@@ -36,7 +37,7 @@ export const Card = () => {
                         <Spinner isOpenSpinner={false} />
                         <div className='table'>
                             {
-                                datosApi?.datos?.results.map((value) => (
+                                datosStore?.datos?.datos?.results.map((value) => (
                                     <div className='container' key={ value.id }>
                                         <div className='box'>
                                             <div className='imgBox'>
@@ -55,7 +56,7 @@ export const Card = () => {
                                 ))
                             }
                         </div>
-                        <Paginate />
+                        
                     </>
                 }  
                 </>
